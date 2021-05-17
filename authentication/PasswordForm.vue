@@ -52,7 +52,7 @@
 </template>
 
 <script>
-import PasswordRulesMixin from '../../mixins/PasswordRulesMixin.vue'
+import PasswordRulesMixin from '../mixins/PasswordRulesMixin.vue'
 import ShowPasswordRules from './ShowPasswordRules.vue'
 
 export default {
