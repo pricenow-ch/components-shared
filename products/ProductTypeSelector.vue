@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import config from '../../../config'
 import definitions from '../../../definitions'
 import Products from '../../classes/products/Products'
 import _ from 'lodash'
@@ -32,9 +31,6 @@ export default {
     return {
       // an object of product groups the user has permissions for
       availableProducts: null,
-
-      // config file
-      config: config,
     }
   },
 
