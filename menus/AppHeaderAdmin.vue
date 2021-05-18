@@ -119,6 +119,7 @@
 
 <script>
 import ProductSelectorHeaderWrapper from '../products/ProductSelectorHeaderWrapper'
+import { shopInstance } from '../../classes-shared/utils/axiosInstance'
 
 export default {
   name: 'AppHeaderAdmin',
@@ -235,14 +236,10 @@ export default {
         /* global EventBus axios */
         EventBus.$emit('spinnerShow')
 
-        axios
-          .patch(
-            this.$store.getters.getCurrentDestinationInstance().getShopApi() +
-              'user/language',
-            {
-              language: this.selectedLanguageKey,
-            }
-          )
+        shopInstance()
+          .patch('user/language', {
+            language: this.selectedLanguageKey,
+          })
           .then(() => {
             EventBus.$emit(
               'notify',
