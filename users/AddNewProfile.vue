@@ -299,6 +299,7 @@ import SCountry from '../utils/SCountry'
 import User from '../../classes-shared/user/User'
 import definitions from '../../../definitions'
 import { shopInstance } from '../../classes-shared/utils/axiosInstance'
+import axios from 'axios'
 
 export default {
   name: 'AddNewProfile',
