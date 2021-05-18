@@ -103,8 +103,8 @@
 </template>
 
 <script>
-import Event from '../../classes/events/Event'
-import Product from '../../classes/products/Product'
+import Event from '../../classes-shared/events/Event'
+import Product from '../../classes-shared/products/Product'
 
 export default {
   name: 'ProductSelector',

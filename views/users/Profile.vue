@@ -368,8 +368,8 @@ import ShowPasswordRules from '@/components-shared/authentication/ShowPasswordRu
 import CardsList from '@/components-shared/cards/CardsList.vue'
 import SCountry from '@/components-shared/utils/SCountry'
 import SBirthdayPicker from '@/components-shared/utils/SBirthdayPicker'
-import Salutations from '@/classes/salutations/Salutations'
-import { shopInstance } from '@/classes/utils/axiosInstance'
+import Salutations from '@/classes-shared/salutations/Salutations'
+import { shopInstance } from '@/classes-shared/utils/axiosInstance'
 
 export default {
   name: 'Profile',

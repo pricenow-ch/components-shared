@@ -73,10 +73,10 @@
 
 <script>
 import CardAdder from './CardAdder.vue'
-import Card from '../../classes/card/Card.js'
+import Card from '../../classes-shared/card/Card.js'
 import definitions from '../../../definitions'
-import CardService from '@/classes/card/CardService'
-import { shopInstance } from '../../classes/utils/axiosInstance'
+import CardService from '@/classes-shared/card/CardService'
+import { shopInstance } from '../../classes-shared/utils/axiosInstance'
 
 export default {
   name: 'CardsList',

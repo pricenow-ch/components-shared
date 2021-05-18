@@ -89,7 +89,7 @@
 </template>
 
 <script>
-import { shopInstance } from '../../../classes/utils/axiosInstance'
+import { shopInstance } from '../../../classes-shared/utils/axiosInstance'
 import PasswordForm from '../../authentication/PasswordForm'
 export default {
   name: 'ConfirmMail',

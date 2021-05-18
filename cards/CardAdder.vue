@@ -212,7 +212,7 @@
 
 <script>
 import { QrcodeReader } from 'vue-qrcode-reader'
-import Card from '../../classes/card/Card.js'
+import Card from '../../classes-shared/card/Card.js'
 import definitions from '../../../definitions'
 
 export default {

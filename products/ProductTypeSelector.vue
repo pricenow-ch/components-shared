@@ -12,7 +12,7 @@
 
 <script>
 import definitions from '../../../definitions'
-import Products from '../../classes/products/Products'
+import Products from '../../classes-shared/products/Products'
 import _ from 'lodash'
 import ProductSelector from './ProductSelector'
 

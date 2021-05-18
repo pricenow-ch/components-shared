@@ -134,7 +134,7 @@
 <script>
 import PasswordRulesMixin from '../../mixins/PasswordRulesMixin.vue'
 import ShowPasswordRules from '../../authentication/ShowPasswordRules.vue'
-import { shopInstance } from '../../../classes/utils/axiosInstance'
+import { shopInstance } from '../../../classes-shared/utils/axiosInstance'
 
 export default {
   name: 'ResetPw',

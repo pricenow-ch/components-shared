@@ -65,7 +65,7 @@
 
 <script>
 import * as moment from 'moment'
-import DateRange from '@/classes/dates/DateRange'
+import DateRange from '@/classes-shared/dates/DateRange'
 // plugin for momentjs
 require('moment-recur')
 

@@ -293,12 +293,12 @@
 <script>
 import CardAdder from '../cards/CardAdder.vue'
 import CardsList from '../cards/CardsList.vue'
-import Card from '../../classes/card/Card'
+import Card from '../../classes-shared/card/Card'
 import SBirthdayPicker from '../utils/SBirthdayPicker'
 import SCountry from '../utils/SCountry'
-import User from '../../classes/user/User'
+import User from '../../classes-shared/user/User'
 import definitions from '../../../definitions'
-import { shopInstance } from '../../classes/utils/axiosInstance'
+import { shopInstance } from '../../classes-shared/utils/axiosInstance'
 
 export default {
   name: 'AddNewProfile',

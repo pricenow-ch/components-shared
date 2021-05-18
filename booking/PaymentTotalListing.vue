@@ -136,7 +136,7 @@
 </template>
 
 <script>
-import Booking from '@/classes/bookings/Booking'
+import Booking from '@/classes-shared/bookings/Booking'
 import cwc from '@/assets/icons/cwc.svg'
 
 export default {
