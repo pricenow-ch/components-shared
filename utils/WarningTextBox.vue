@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import WarningText from '@/components/shop/helper/WarningText'
+import WarningText from '@/components-shared/utils/WarningText'
 
 export default {
   name: 'WarningTextBox',
