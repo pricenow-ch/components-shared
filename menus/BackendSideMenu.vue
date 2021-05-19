@@ -177,11 +177,15 @@ export default {
     },
 
     getSIconSrc(icon, isActive) {
-      return require('@/assets/icons/shortCutSection/' +
-        (isActive ? 'primary' : 'white') +
-        '/' +
-        icon +
-        '.svg')
+      try {
+        return require('@/assets/icons/shortCutSection/' +
+          (isActive ? 'primary' : 'white') +
+          '/' +
+          icon +
+          '.svg')
+      } catch (e) {
+        return null
+      }
     },
   },
 }

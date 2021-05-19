@@ -276,11 +276,10 @@ export default {
     /**
      * this is the main logout logic
      */
-    async logout(resetBookingProcess = true, notify = true) {
+    async logout() {
       EventBus.$emit('spinnerShow')
-
       // delete user and user authorization
-      await this.$store.dispatch('destroyUser', resetBookingProcess)
+      await this.$store.dispatch('destroyUser')
 
       // delete cookies, if there are any
       if (this.$cookies.isKey('authorization')) {
