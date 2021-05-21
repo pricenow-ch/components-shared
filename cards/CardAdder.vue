@@ -294,7 +294,9 @@ export default {
       let preselectMediaType = null
       if (
         this.availableCardTypes.length > 2 &&
-        this.availableCardTypes[0] === definitions.ticketMedia.paper
+        (this.availableCardTypes[0] === definitions.ticketMedia.paper ||
+          this.availableCardTypes[0] === definitions.ticketMedia.printAtHome ||
+          this.availableCardTypes[0] === definitions.ticketMedia.pickUp)
       ) {
         preselectMediaType = this.availableCardTypes[1]
       } else {
