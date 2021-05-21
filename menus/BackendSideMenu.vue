@@ -132,15 +132,13 @@ export default {
         // are we in shop or pe backend ?
         if (this.weAreInBackendPe) {
           // we are in pe backend
-          let shopBackendRoutes = await this.routerHelper.getBackendShopRoutes(
-            true,
-            false,
-            true
-          )
-
-          // if we got any
-          if (shopBackendRoutes.length) return shopBackendRoutes[0]
-          else return null
+          const canISwitchToShopAdmin = await this.$store.getters
+            .getAppUserInstance()
+            .doIHavePermissionForShopAdmin()
+          if (canISwitchToShopAdmin) {
+            return process.env.VUE_APP_SHOP_ADMIN_URL
+          }
+          return null
         } else if (this.weAreInBackendShop) {
           const canISwitchToPricingDashboard = await this.$store.getters
             .getAppUserInstance()
