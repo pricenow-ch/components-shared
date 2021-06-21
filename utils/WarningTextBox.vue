@@ -4,7 +4,9 @@
       <v-col class="py-0">
         <v-row class="no-gutters">
           <v-col class="pa-0">
-            <warning-text justify="">{{ $t(warningText) }}</warning-text>
+            <warning-text justify="">
+              <span v-html="$t(warningText)" />
+            </warning-text>
           </v-col>
           <v-col
             class="text-right clickable col-1 align-self-center"
