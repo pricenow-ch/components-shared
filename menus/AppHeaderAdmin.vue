@@ -67,7 +67,7 @@
 
             <!-- logging out button -->
             <v-list-item>
-              <v-list-item-title @click="$store.dispatch('logout')">
+              <v-list-item-title @click="initLogout()">
                 <span class="content-3 clickable">
                   {{ $t('layout.logout') }}
                 </span>
@@ -178,6 +178,15 @@ export default {
 
   mounted() {
     this.selectedLanguageKey = this.$store.getters.getActualLanguage(false) // get actual language Key
+
+    // logout from other components
+    EventBus.$on('logout', (notify = true) => {
+      this.logout(true, notify)
+    })
+  },
+
+  beforeDestroy() {
+    EventBus.$off('logout')
   },
 
   methods: {
@@ -249,6 +258,55 @@ export default {
             EventBus.$emit('spinnerHide')
           })
       }
+    },
+
+    /**
+     * LOGOUT SECTION
+     **/
+    initLogout() {
+      // did or do we use the basket...
+      if (this.$store.getters.getBasketInstance().isBasketInUse()) {
+        // ... then ask the user to delete it
+        this.$refs.resetBasketModal.show()
+      } else {
+        this.logout()
+      }
+    },
+
+    /**
+     * this is the main logout logic
+     */
+    async logout() {
+      EventBus.$emit('spinnerShow')
+      // delete user and user authorization
+      await this.$store.dispatch('destroyUser')
+
+      // delete cookies, if there are any
+      if (this.$cookies.isKey('authorization')) {
+        this.$cookies.remove('authorization')
+      }
+
+      if (this.$cookies.isKey('uid')) {
+        this.$cookies.remove('uid')
+      }
+
+      // kill the products because we run into problems if a
+      // user logs out and after that a new user logs in
+      // without reloading the page -> then we have mixed destination products
+      // in the store
+      this.$store.commit('setProducts', null)
+
+      // notify user
+      if (notify)
+        EventBus.$emit('notify', this.$t('notify.logoutSuccess'), 'success')
+
+      // hide spinner
+      EventBus.$emit('spinnerHide')
+
+      // if we are in the default destination: go back to login page
+      if (this.isDefaultDestination) this.$router.push({ name: 'login' })
+      else if (this.$route.name !== 'booking')
+        this.$router.push({ name: 'booking' })
     },
   },
 }

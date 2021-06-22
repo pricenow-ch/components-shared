@@ -471,7 +471,7 @@ export default {
       // close modal
       this.$refs.deactivateProfile.hide()
       // logout
-      await this.$store.dispatch('logout')
+      EventBus.$emit('logout')
     },
 
     checkMail() {

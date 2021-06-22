@@ -134,7 +134,7 @@ export default {
           // we are in pe backend
           const canISwitchToShopAdmin = await this.$store.getters
             .getAppUserInstance()
-            ?.doIHavePermissionForShopAdmin()
+            .doIHavePermissionForShopAdmin()
           if (canISwitchToShopAdmin) {
             return process.env.VUE_APP_SHOP_ADMIN_URL
           }
@@ -142,7 +142,7 @@ export default {
         } else if (this.weAreInBackendShop) {
           const canISwitchToPricingDashboard = await this.$store.getters
             .getAppUserInstance()
-            ?.doIHavePermissionForPricingDashboard()
+            .doIHavePermissionForPricingDashboard()
           if (canISwitchToPricingDashboard) {
             return process.env.VUE_APP_PRICING_DASHBOARD_URL
           }
