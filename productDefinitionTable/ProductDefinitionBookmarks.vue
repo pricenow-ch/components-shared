@@ -167,7 +167,7 @@
 <script>
 import ProductDefinition from '@/classes-shared/products/ProductDefinition'
 import { mapState } from 'vuex'
-import BookmarkList from '@/classes-internal/bookmark/BookmarkList'
+import BookmarkList from '@/classes-shared/bookmark/BookmarkList'
 import _ from 'lodash'
 export default {
   name: 'ProductDefinitionBookmarks',
