@@ -6,9 +6,7 @@
       class="skinow-toolbar fluid elevation-4 align-center justify-center no-gutters fixed-toolbar-for-backend"
     >
       <!-- logo -->
-      <v-col
-        class="clickable just col-4 pl-2"
-      >
+      <v-col class="clickable just col-4 pl-2">
         <img
           class="destination-logo"
           :src="require('../../assets/destinations/logo/default.png')"
@@ -55,12 +53,10 @@
 
           <!-- user menu -->
           <v-list>
-            <v-list-item
-              @click="$router.push({name: 'profile'})"
-            >
+            <v-list-item @click="$router.push({ name: 'profile' })">
               <v-list-item-title>
                 <span class="content-3">
-                  {{$t('routingTitles.profile')}}
+                  {{ $t('routingTitles.profile') }}
                 </span>
               </v-list-item-title>
             </v-list-item>
