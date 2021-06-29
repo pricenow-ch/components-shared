@@ -21,14 +21,14 @@
       @ok="emitOk()"
       @hide="emitCancel()"
     >
-      <v-layout class="wrap">
-        <v-flex class="xs12">
-          <div class="content-3 text-center">
+      <v-row>
+        <v-col class="col-12">
+          <div class="content-3 text-left">
             {{ text }}
             <span v-html="htmlText" />
           </div>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </s-modal>
   </div>
 </template>

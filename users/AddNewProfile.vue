@@ -446,7 +446,7 @@ export default {
         firstName: null,
         lastName: null,
         birthday: null,
-        mail: null,
+        mail: this.additionalFields.mail,
         oldMail: null,
         address: this.additionalFields.address,
         city: this.additionalFields.city,

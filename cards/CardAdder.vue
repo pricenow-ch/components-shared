@@ -8,7 +8,12 @@
       <!-- select card type -->
       <v-row>
         <v-col class="col-12 pt-0">
-          <v-radio-group v-model="card.getCard().type" row hide-details>
+          <v-radio-group
+            :value="selectedCardType"
+            row
+            hide-details
+            @change="(type) => (card.getCard().type = type.toString())"
+          >
             <v-radio
               v-if="availableCardTypes.includes('swisspass')"
               color="primary"
@@ -279,6 +284,12 @@ export default {
     }
   },
 
+  computed: {
+    selectedCardType() {
+      return parseInt(this.card.getCard().type, 10)
+    },
+  },
+
   watch: {
     availableCardTypes() {
       this.preselectMediaType()
@@ -294,17 +305,18 @@ export default {
       let preselectMediaType = null
       if (
         this.availableCardTypes.length > 2 &&
-        this.availableCardTypes[0] === definitions.ticketMedia.paper
+        (this.availableCardTypes[0] === definitions.ticketMedia.paper ||
+          this.availableCardTypes[0] === definitions.ticketMedia.printAtHome ||
+          this.availableCardTypes[0] === definitions.ticketMedia.pickUp)
       ) {
         preselectMediaType = this.availableCardTypes[1]
       } else {
         preselectMediaType = this.availableCardTypes[0]
       }
-      this.card.card.setCardType(
-        Object.values(definitions.oldMediaType).findIndex(
-          (oldMediaType) => oldMediaType === preselectMediaType
-        )
+      const cardTypIndex = Object.values(definitions.oldMediaType).findIndex(
+        (oldMediaType) => oldMediaType === preselectMediaType
       )
+      this.card.getCard().type = cardTypIndex.toString()
     },
 
     setZipCodeFocus() {
