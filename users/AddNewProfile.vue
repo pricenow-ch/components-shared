@@ -623,10 +623,7 @@ export default {
         /* global EventBus axios */
         EventBus.$emit('spinnerShow')
 
-        let url = this.$store.getters
-          .getCurrentDestinationInstance()
-          .getShopApi()
-        url = this.foreignUidForShadowUser ? url + 'admin/user' : url + 'user'
+        const url = this.foreignUidForShadowUser ? '/admin/user' : '/user'
         // prepare zip
         let zip =
           this.$refs.cardAdder?.getCard()?.getZip() || this.fields?.zip || null
@@ -659,7 +656,7 @@ export default {
             .getCard().cardDescription
         }
 
-        axios
+        shopInstance(true)
           .post(url, payload)
           .then((response) => {
             this.$emit('refresh', response.data)
