@@ -299,7 +299,6 @@ import SCountry from '../utils/SCountry'
 import User from '../../classes-shared/user/User'
 import definitions from '../../../definitions'
 import { shopInstance } from '../../classes-shared/utils/axiosInstance'
-import axios from 'axios'
 
 export default {
   name: 'AddNewProfile',
@@ -591,10 +590,13 @@ export default {
       url += 'user/mailAddress'
 
       try {
-        await axios.patch(url, {
-          mail: this.fields.mail,
-          uid: this.uid,
-        })
+        await shopInstance(true).patch(
+          `${this.editOtherUsersProfile ? '/admin' : ''}/user/mailAddress`,
+          {
+            mail: this.fields.mail,
+            uid: this.uid,
+          }
+        )
 
         this.afterUserUpdate()
       } catch (e) {
