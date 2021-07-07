@@ -123,7 +123,7 @@ export default {
             mailConfirmationCode: this.$route.params.code,
             password: this.needPassword
               ? this.$refs.passwordForm.getPassword()
-              : '',
+              : null,
           })
           .then(() => {
             this.confirmationSuccess = true
