@@ -20,7 +20,7 @@
 <script>
 import definitions from '../../../definitions'
 import Products from '../../classes-shared/products/Products'
-import Seasons from '@/classes-internal/season/Seasons'
+import Seasons from '@/classes-shared/season/Seasons'
 import _ from 'lodash'
 import ProductSelector from './ProductSelector'
 import SeasonSelector from './SeasonSelector'
