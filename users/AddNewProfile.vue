@@ -437,6 +437,12 @@ export default {
       required: false,
       default: false,
     },
+
+    generatePassword: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 
   data() {
@@ -646,6 +652,7 @@ export default {
           title: this.fields.salutations
             ? this.salutations.salutation.salutationKey
             : null,
+          createPassword: this.generatePassword,
         }
 
         if (this.foreignUidForShadowUser && this.shadow) {
