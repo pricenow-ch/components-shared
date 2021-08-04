@@ -537,7 +537,7 @@ export default {
           data
         )
 
-        if (this.oldMail === this.mail) {
+        if (this.fields.oldMail === this.fields.mail) {
           // update email, if there is a new one
           this.afterUserUpdate()
         } else {
