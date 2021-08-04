@@ -513,8 +513,6 @@ export default {
 
     // update user profile
     async updateProfile() {
-      console.log('addNewProfile:edit:' + this.edit + ':updateProfile')
-
       /* global EventBus axios */
       EventBus.$emit('spinnerShow')
       let data = {
@@ -584,7 +582,6 @@ export default {
     },
 
     async updateMail() {
-      console.log('addNewProfile:edit:' + this.edit + ':updateMail')
       /* global EventBus axios */
       EventBus.$emit('spinnerShow')
 
