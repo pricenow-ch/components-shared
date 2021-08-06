@@ -690,7 +690,7 @@ export default {
           })
           .catch((error) => {
             if (error.response.status === 409) {
-              let user = new User(error.response.data.error)
+              let user = new User(error.response.data)
               let userString = user.getFullName()
               if (user.getBirthdate()) userString + ', ' + user.getBirthdate()
               if (user.getCity())
