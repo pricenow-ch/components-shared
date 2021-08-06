@@ -1,24 +1,37 @@
 <template>
-  <div>
-    <product-selector
-      outlined
-      prefix-icon="fal fa-hand-pointer"
-      :products-and-events="productsForProductSelector"
-      :selected-product-or-event-instance="selectedProductForProductSelector"
-      @update:selectedProductOrEventInstance="onProductTypeSelected"
-    />
-  </div>
+  <v-row dense justify='start'>
+    <v-col class='col-auto'>
+      <season-selector
+        outlined
+        prefix-icon='fal fa-calendar'
+        :seasons='availableSeasons'
+        :selected-season-instance='selectedSeasonForSeasonSelector'
+        @update:selectedSeasonInstance='onSeasonSelected'
+      />
+    </v-col>
+    <v-col class='col-auto'>
+      <product-selector
+        outlined
+        prefix-icon='fal fa-hand-pointer'
+        :products-and-events='productsForProductSelector'
+        :selected-product-or-event-instance='selectedProductForProductSelector'
+        @update:selectedProductOrEventInstance='onProductTypeSelected'
+      />
+    </v-col>
+  </v-row>
 </template>
 
 <script>
 import definitions from '../../../definitions'
 import Products from '../../classes-shared/products/Products'
+import Seasons from '@/classes-shared/season/Seasons'
 import _ from 'lodash'
 import ProductSelector from './ProductSelector'
+import SeasonSelector from './SeasonSelector'
 
 export default {
   name: 'ProductTypeSelector',
-  components: { ProductSelector },
+  components: { ProductSelector, SeasonSelector },
   props: {
     preselectedProductId: {
       type: Number,
@@ -31,12 +44,16 @@ export default {
     return {
       // an object of product groups the user has permissions for
       availableProducts: null,
+      availableSeasons: null,
     }
   },
 
   computed: {
     chosenProducts() {
       return this.$store.getters.getProducts()
+    },
+    selectedSeason() {
+      return this.$store.getters.getSelectedSeason()
     },
     // products for the product-selector
     productsForProductSelector() {
@@ -46,6 +63,14 @@ export default {
       }
       return []
     },
+
+    selectedSeasonForSeasonSelector() {
+      if (this.selectedSeason) {
+        return this.selectedSeason
+      }
+      return this.availableSeasons[0]
+    },
+
     selectedProductForProductSelector() {
       if (this.chosenProducts) {
         return this.chosenProducts.getFirstProduct()
@@ -59,9 +84,14 @@ export default {
     // get the userInstance to read the destinations available for the logged in user
     let userInstance = this.$store.getters.getAppUserInstance()
     const destinations = userInstance.userDestinationsInstance.getDestinationsWithPermissions(
-      definitions.permissions.engine.PE_GET_PRICES
+      definitions.permissions.engine.PE_GET_PRICES,
     )
-
+    //fetch all seasons for available destinations
+    const seasonsInstance = new Seasons()
+    await seasonsInstance.loadSeasonsForAllDestinations(destinations)
+    this.availableSeasons = seasonsInstance.getAllSeasons()
+    //default current selected season to the first one
+    this.$store.commit('setSelectedSeason', seasonsInstance.getFirstSeason())
     // fetch all products for each destination from api
     let productsInstance = new Products()
     await productsInstance.loadProductsForAllDestinations(destinations, true)
@@ -84,7 +114,7 @@ export default {
     // return first product group as products instance
     if (this.availableProducts.length > 0) {
       this.availableProducts[0].map((productInstance) =>
-        this.chosenProducts.addProduct(productInstance)
+        this.chosenProducts.addProduct(productInstance),
       )
     }
   },
@@ -94,15 +124,20 @@ export default {
       // get product type group
       let products = this.availableProducts.find(
         (productTypeGroup) =>
-          productTypeGroup[0].getId() === productInstance.getId()
+          productTypeGroup[0].getId() === productInstance.getId(),
       )
 
       // reset products
       this.$store.commit('setProducts')
       // transform products into products instance
       products.map((productInstance) =>
-        this.chosenProducts.addProduct(productInstance)
+        this.chosenProducts.addProduct(productInstance),
       )
+    },
+
+    onSeasonSelected(seasonInstance) {
+      this.onProductTypeSelected(this.selectedProductForProductSelector)
+      this.$store.commit('setSelectedSeason', seasonInstance)
     },
   },
 }
