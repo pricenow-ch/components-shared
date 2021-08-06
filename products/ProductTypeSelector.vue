@@ -84,7 +84,7 @@ export default {
     // get the userInstance to read the destinations available for the logged in user
     let userInstance = this.$store.getters.getAppUserInstance()
     const destinations = userInstance.userDestinationsInstance.getDestinationsWithPermissions(
-      definitions.permissions.engine.PE_GET_PRICES,
+      definitions.permissions.engine.PE_GET_PRICES
     )
     //fetch all seasons for available destinations
     const seasonsInstance = new Seasons()
@@ -114,7 +114,7 @@ export default {
     // return first product group as products instance
     if (this.availableProducts.length > 0) {
       this.availableProducts[0].map((productInstance) =>
-        this.chosenProducts.addProduct(productInstance),
+        this.chosenProducts.addProduct(productInstance)
       )
     }
   },
@@ -124,14 +124,14 @@ export default {
       // get product type group
       let products = this.availableProducts.find(
         (productTypeGroup) =>
-          productTypeGroup[0].getId() === productInstance.getId(),
+          productTypeGroup[0].getId() === productInstance.getId()
       )
 
       // reset products
       this.$store.commit('setProducts')
       // transform products into products instance
       products.map((productInstance) =>
-        this.chosenProducts.addProduct(productInstance),
+        this.chosenProducts.addProduct(productInstance)
       )
     },
 
