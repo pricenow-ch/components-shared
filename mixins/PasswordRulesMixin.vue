@@ -44,7 +44,8 @@ export default {
         this.passwordHasNumber() &&
         // this.passwordHasSpecialCharacter() &&
         // this.passwordHasCapitalLetter() &&
-        (this.passwordHasSmallLetter() || this.passwordHasCapitalLetter())
+        this.passwordHasSmallLetter() &&
+        this.passwordHasCapitalLetter()
       ) // &&
       // this.passwordDoesNotContainPersonalInformation()
     },
