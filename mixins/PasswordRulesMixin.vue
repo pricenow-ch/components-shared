@@ -44,8 +44,7 @@ export default {
         this.passwordHasNumber() &&
         // this.passwordHasSpecialCharacter() &&
         // this.passwordHasCapitalLetter() &&
-        this.passwordHasSmallLetter() &&
-        this.passwordHasCapitalLetter()
+        this.passwordHasLetters()
       ) // &&
       // this.passwordDoesNotContainPersonalInformation()
     },
@@ -72,6 +71,10 @@ export default {
 
     passwordHasSmallLetter() {
       return /[a-z]+/.test(this.password1)
+    },
+
+    passwordHasLetters() {
+      return this.passwordHasCapitalLetter() && this.passwordHasSmallLetter
     },
 
     passwordDoesNotContainPersonalInformation() {
