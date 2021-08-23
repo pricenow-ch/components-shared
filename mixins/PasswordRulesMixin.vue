@@ -74,7 +74,7 @@ export default {
     },
 
     passwordHasLetters() {
-      return this.passwordHasCapitalLetter() && this.passwordHasSmallLetter
+      return this.passwordHasCapitalLetter() && this.passwordHasSmallLetter()
     },
 
     passwordDoesNotContainPersonalInformation() {

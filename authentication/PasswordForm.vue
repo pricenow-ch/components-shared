@@ -7,14 +7,11 @@
       :passwordTouched="passwordTouched"
       :passwordLength="passwordLength()"
       :passwordHasNumber="passwordHasNumber()"
-      :passwordHasLetters="
-        passwordHasSmallLetter() && passwordHasCapitalLetter()
-      "
+      :passwordHasLetters="passwordHasLetters()"
       :passwordEqual="passwordEqual()"
       vFlexClass="xs12 md4 offset-md8"
       vLayoutClass="align-center"
-    >
-    </show-password-rules>
+    />
 
     <!-- password input fields -->
     <v-form ref="passwordFormContainer" @submit.prevent="">
