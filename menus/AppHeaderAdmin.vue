@@ -15,10 +15,12 @@
 
       <!-- product selection in backend mode -->
       <v-col
-        v-if="$store.getters.getAppUserInstance()"
+        v-if="$store.getters.getAppUserInstance() && showProductTypeSelector"
         class="col-4 text-center"
       >
-        <product-selector-header-wrapper />
+        <div>
+          <product-type-selector />
+        </div>
       </v-col>
 
       <!-- basket, user and language -->
@@ -114,14 +116,14 @@
 </template>
 
 <script>
-import ProductSelectorHeaderWrapper from '../products/ProductSelectorHeaderWrapper'
+import ProductTypeSelector from '../products/ProductTypeSelector'
 import { shopInstance } from '../../classes-shared/utils/axiosInstance'
 
 export default {
   name: 'AppHeaderAdmin',
 
   components: {
-    ProductSelectorHeaderWrapper,
+    ProductTypeSelector,
   },
 
   data() {
@@ -130,6 +132,8 @@ export default {
       drawer: false,
       selectedLanguageKey: '',
       selectedMenuEntry: Object,
+      // all routes where the product type selector has to be displayed
+      routes: ['overviewPricing', 'pricingDetails'],
     }
   },
 
@@ -151,6 +155,9 @@ export default {
 
       if (pagesInstance) return pagesInstance.getPages()
       else return []
+    },
+    showProductTypeSelector() {
+      return this.routes.includes(this.$route.name)
     },
   },
 

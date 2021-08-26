@@ -192,9 +192,7 @@
               :passwordTouched="passwordTouched"
               :passwordLength="passwordLength()"
               :passwordHasNumber="passwordHasNumber()"
-              :passwordHasLetters="
-                passwordHasSmallLetter() && passwordHasCapitalLetter()
-              "
+              :passwordHasLetters="passwordHasLetters()"
               :passwordEqual="passwordEqual()"
             />
             <v-form ref="passwordForm" style="z-index: 0" @submit.prevent="">

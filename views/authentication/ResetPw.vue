@@ -6,12 +6,11 @@
       :passwordTouched="passwordTouched"
       :passwordLength="passwordLength()"
       :passwordHasNumber="passwordHasNumber()"
-      :passwordHasSmallLetter="passwordHasSmallLetter()"
+      :passwordHasLetters="passwordHasLetters()"
       :passwordEqual="passwordEqual()"
       vFlexClass="xs12 md4 offset-md8"
       vLayoutClass="align-center"
-    >
-    </show-password-rules>
+    />
 
     <v-layout
       class="wrap z-index-7 mt-12 pt-12"
@@ -51,13 +50,13 @@
                         :rules="$store.getters.getMailRules()"
                         :label="$t('general.email')"
                         required
+                        outlined
                         @keyup.enter="resetPw()"
-                      >
-                      </v-text-field>
+                      />
                     </v-form>
                   </v-flex>
                   <v-flex class="xs12 md6 text-center text-md-right">
-                    <v-btn text large @click="resetPw()">
+                    <v-btn outlined large @click="resetPw()">
                       {{ $t('resetPw.resetPwButton') }}
                     </v-btn>
                   </v-flex>
@@ -74,9 +73,9 @@
                         v-model="code"
                         :rules="[(v) => !!v || this.$t('resetPw.codeRequired')]"
                         :label="$t('resetPw.resetCode')"
+                        outlined
                         required
-                      >
-                      </v-text-field>
+                      />
                     </v-flex>
                   </v-layout>
 
@@ -89,11 +88,11 @@
                         :label="$t('resetPw.newPw')"
                         :append-icon="showPw ? 'visibility_off' : 'visibility'"
                         :type="showPw ? 'text' : 'password'"
+                        outlined
                         required
                         @click:append="showPw = !showPw"
                         @focus="passwordTouched = true"
-                      >
-                      </v-text-field>
+                      />
                     </v-flex>
                   </v-layout>
 
@@ -106,17 +105,17 @@
                         :label="$t('resetPw.newPwRepeat')"
                         :append-icon="showPw ? 'visibility_off' : 'visibility'"
                         :type="showPw ? 'text' : 'password'"
+                        outlined
                         required
                         @click:append="showPw = !showPw"
-                      >
-                      </v-text-field>
+                      />
                     </v-flex>
                   </v-layout>
 
                   <!-- reset pw button -->
                   <v-layout justify-center class="pt-6">
                     <v-flex xs12 sm8 md4>
-                      <v-btn class="ml-0" text large @click="sendNewPw()">
+                      <v-btn class="ml-0" outlined large @click="sendNewPw()">
                         {{ $t('profile.changePassword') }}
                       </v-btn>
                     </v-flex>
