@@ -678,14 +678,15 @@ export default {
               this.fields.firstName = null
               this.fields.lastName = null
               this.fields.birthday = null
-              this.fields.mail = null
-              this.fields.country = null
-              this.fields.address = null
-              this.fields.city = null
-              this.fields.zip = null
-              this.fields.country = null
-              this.fields.phone = null
-              this.fields.company = null
+              this.fields.oldMail = null
+              this.fields.mail = this.additionalFields.mail
+              this.fields.country = this.additionalFields.country
+              this.fields.address = this.additionalFields.address
+              this.fields.city = this.additionalFields.city
+              this.fields.zip = this.additionalFields.zip
+              this.fields.salutations = this.additionalFields.salutations
+              this.fields.phone = this.additionalFields.phone
+              this.fields.company = this.additionalFields.company
             }
           })
           .catch((error) => {
