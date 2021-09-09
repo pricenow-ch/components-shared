@@ -184,17 +184,6 @@
             {{ $t('general.password') }}
           </v-card-title>
           <v-card-text>
-            <show-password-rules
-              vLayoutClass="align-end pb-6"
-              vFlexClass="xs12 md3 offset-md9"
-              passwordRulesAlignTopSmAndDown
-              :isPasswordValid="isPasswordValid()"
-              :passwordTouched="passwordTouched"
-              :passwordLength="passwordLength()"
-              :passwordHasNumber="passwordHasNumber()"
-              :passwordHasLetters="passwordHasLetters()"
-              :passwordEqual="passwordEqual()"
-            />
             <v-form ref="passwordForm" style="z-index: 0" @submit.prevent="">
               <v-row class="pt-6 pb-4 px-2">
                 <!-- pw1 -->
@@ -203,8 +192,7 @@
                     id="password"
                     v-model="password1"
                     outlined
-                    validate-on-blur
-                    :rules="password1Rules"
+                    :rules="passwordRulesWithMessage"
                     :label="$t('registration.password')"
                     :append-icon="showPw ? 'visibility_off' : 'visibility'"
                     :type="showPw ? 'text' : 'password'"
@@ -219,8 +207,7 @@
                   <v-text-field
                     v-model="password2"
                     outlined
-                    validate-on-blur
-                    :rules="passwordRules"
+                    :rules="passwordEqualWithMessage"
                     :label="$t('registration.passwordRepete')"
                     :append-icon="showPw ? 'visibility_off' : 'visibility'"
                     :type="showPw ? 'text' : 'password'"
@@ -362,7 +349,6 @@
 
 <script>
 import PasswordRulesMixin from '@/components-shared/mixins/PasswordRulesMixin.vue'
-import ShowPasswordRules from '@/components-shared/authentication/ShowPasswordRules.vue'
 import CardsList from '@/components-shared/cards/CardsList.vue'
 import SCountry from '@/components-shared/utils/SCountry'
 import SBirthdayPicker from '@/components-shared/utils/SBirthdayPicker'
@@ -374,7 +360,6 @@ export default {
 
   components: {
     SCountry,
-    ShowPasswordRules,
     CardsList,
     SBirthdayPicker,
   },

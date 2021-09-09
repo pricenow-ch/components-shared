@@ -1,17 +1,7 @@
 <template>
   <div>
     <!-- TODO this form is only used ind confirmMail.vue so far. However, it's meant to use in profile.vue as well as in registrationForm.vue -->
-    <!-- password constraints -->
-    <show-password-rules
-      :isPasswordValid="isPasswordValid()"
-      :passwordTouched="passwordTouched"
-      :passwordLength="passwordLength()"
-      :passwordHasNumber="passwordHasNumber()"
-      :passwordHasLetters="passwordHasLetters()"
-      :passwordEqual="passwordEqual()"
-      vFlexClass="xs12 md4 offset-md8"
-      vLayoutClass="align-center"
-    />
+
 
     <!-- password input fields -->
     <v-form ref="passwordFormContainer" @submit.prevent="">
@@ -21,11 +11,10 @@
           <v-text-field
             id="password"
             v-model="password1"
-            :rules="passwordRules"
+            :rules="passwordRulesWithMessage"
             :label="$t('registration.password')"
             :append-icon="showPassword ? 'visibility_off' : 'visibility'"
             :type="showPassword ? 'text' : 'password'"
-            validate-on-blur
             @focus="passwordTouched = true"
             @click:append="showPassword = !showPassword"
           ></v-text-field>
@@ -35,11 +24,10 @@
         <v-flex class="xs12">
           <v-text-field
             v-model="password2"
-            :rules="passwordRules"
+            :rules="passwordEqualWithMessage"
             :label="$t('registration.passwordRepete')"
             :append-icon="showPassword ? 'visibility_off' : 'visibility'"
             :type="showPassword ? 'text' : 'password'"
-            validate-on-blur
             @click:append="showPassword = !showPassword"
           ></v-text-field>
         </v-flex>
@@ -50,14 +38,9 @@
 
 <script>
 import PasswordRulesMixin from '../mixins/PasswordRulesMixin.vue'
-import ShowPasswordRules from './ShowPasswordRules.vue'
 
 export default {
   name: 'PasswordForm',
-
-  components: {
-    ShowPasswordRules,
-  },
 
   mixins: [PasswordRulesMixin],
 
