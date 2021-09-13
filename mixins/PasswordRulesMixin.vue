@@ -13,8 +13,11 @@ export default {
       passwordRulesWithMessage: [
         (v) => !!v || this.$t('registration.passwordRequired'),
         () => this.passwordLength() || this.$t('registration.passwordLength'),
-        () => this.passwordHasNumber() || this.$t('registration.passwordHasNumber'),
-        () => this.passwordHasLetters() || this.$t('registration.passwordHasLetters'),
+        () =>
+          this.passwordHasNumber() || this.$t('registration.passwordHasNumber'),
+        () =>
+          this.passwordHasLetters() ||
+          this.$t('registration.passwordHasLetters'),
       ],
       passwordEqualWithMessage: [
         (v) => !!v || this.$t('registration.passwordRequired'),
