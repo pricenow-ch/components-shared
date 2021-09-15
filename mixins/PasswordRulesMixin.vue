@@ -10,32 +10,23 @@ export default {
     return {
       password1: '',
       password2: '',
-      passwordRules: [
-        (v) => !!v || this.$t('registration.passwordWrong'),
-        this.checkFirst,
+      passwordRulesWithMessage: [
+        (v) => !!v || this.$t('registration.passwordRequired'),
+        () => this.passwordLength() || this.$t('registration.passwordLength'),
+        () =>
+          this.passwordHasNumber() || this.$t('registration.passwordHasNumber'),
+        () =>
+          this.passwordHasLetters() ||
+          this.$t('registration.passwordHasLetters'),
       ],
-      password1Rules: [
-        (v) => !!v || this.$t('registration.passwordWrong'),
-        this.checkPassword1,
+      passwordEqualWithMessage: [
+        (v) => !!v || this.$t('registration.passwordRequired'),
+        () => this.passwordEqual() || this.$t('registration.passwordEqual'),
       ],
     }
   },
 
   methods: {
-    checkFirst() {
-      return this.password2 == '' || this.checkPasswords()
-    },
-
-    checkPasswords() {
-      return this.isPasswordValid() || this.$t('registration.passwordWrong')
-    },
-
-    checkPassword1() {
-      return (
-        this.isPasswordValid(false) || this.$t('registration.passwordWrong')
-      )
-    },
-
     // compare the two new Passwords
     isPasswordValid(checkEqual = true) {
       return (

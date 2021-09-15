@@ -1,20 +1,7 @@
 <template>
   <div>
-    <!-- show password rules -->
-    <show-password-rules
-      :isPasswordValid="isPasswordValid()"
-      :passwordTouched="passwordTouched"
-      :passwordLength="passwordLength()"
-      :passwordHasNumber="passwordHasNumber()"
-      :passwordHasLetters="passwordHasLetters()"
-      :passwordEqual="passwordEqual()"
-      vFlexClass="xs12 md4 offset-md8"
-      vLayoutClass="align-center"
-    />
-
     <v-layout
-      class="wrap z-index-7 mt-12 pt-12"
-      :class="{ 'justify-center': !passwordTouched }"
+      class="wrap justify-center z-index-7 mt-12 pt-12"
     >
       <v-flex class="xs12 md7">
         <v-card>
@@ -84,14 +71,13 @@
                     <v-flex>
                       <v-text-field
                         v-model="password1"
-                        :rules="passwordRules"
+                        :rules="passwordRulesWithMessage"
                         :label="$t('resetPw.newPw')"
                         :append-icon="showPw ? 'visibility_off' : 'visibility'"
                         :type="showPw ? 'text' : 'password'"
                         outlined
                         required
                         @click:append="showPw = !showPw"
-                        @focus="passwordTouched = true"
                       />
                     </v-flex>
                   </v-layout>
@@ -101,7 +87,7 @@
                     <v-flex>
                       <v-text-field
                         v-model="password2"
-                        :rules="passwordRules"
+                        :rules="passwordEqualWithMessage"
                         :label="$t('resetPw.newPwRepeat')"
                         :append-icon="showPw ? 'visibility_off' : 'visibility'"
                         :type="showPw ? 'text' : 'password'"
@@ -132,15 +118,10 @@
 
 <script>
 import PasswordRulesMixin from '../../mixins/PasswordRulesMixin.vue'
-import ShowPasswordRules from '../../authentication/ShowPasswordRules.vue'
 import { shopInstance } from '../../../classes-shared/utils/axiosInstance'
 
 export default {
   name: 'ResetPw',
-
-  components: {
-    ShowPasswordRules,
-  },
 
   mixins: [PasswordRulesMixin],
 
@@ -150,7 +131,6 @@ export default {
       mail: '',
       firstStep: true,
       showPw: false,
-      passwordTouched: false,
     }
   },
 
