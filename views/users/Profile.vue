@@ -450,7 +450,7 @@ export default {
     // delete my profile
     async deactivateMyProfile() {
       if (!this.$refs.deactivateModalForm.validate()) return
-      if (!this.appUser.deactivateMyProfile()) return
+      if (!await this.appUser.deactivateMyProfile()) return
       // close modal
       this.$refs.deactivateProfile.hide()
       // logout
@@ -547,7 +547,7 @@ export default {
       /* global EventBus axios */
       EventBus.$emit('spinnerShow')
 
-      shopInstance
+      shopInstance()
         .patch(
           this.$store.getters.getCurrentDestinationInstance().getShopApi() +
             'user/mailAddress',
