@@ -450,7 +450,7 @@ export default {
     // delete my profile
     async deactivateMyProfile() {
       if (!this.$refs.deactivateModalForm.validate()) return
-      if (!await this.appUser.deactivateMyProfile()) return
+      if (!(await this.appUser.deactivateMyProfile())) return
       // close modal
       this.$refs.deactivateProfile.hide()
       // logout
