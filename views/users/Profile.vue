@@ -516,13 +516,6 @@ export default {
               country: this.country === '' ? null : this.country,
               phone: this.phone === '' ? null : this.phone,
               language: this.$store.getters.getActualLanguage(false),
-              skiDay: this.perfectSkiDay === '' ? null : this.perfectSkiDay,
-              skiDestination:
-                this.favoriteSkiRessort === '' ? null : this.favoriteSkiRessort,
-              skiMask:
-                this.favoriteSkiMask === '' ? null : this.favoriteSkiMask,
-              education: this.education === '' ? null : this.education,
-              profession: this.profession === '' ? null : this.profession,
               title: this.salutations.salutation.salutationKey,
             }
           )
