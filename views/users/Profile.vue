@@ -370,11 +370,6 @@ export default {
     return {
       showPw: false,
       passwordTouched: false,
-      favoriteSkiRessort: null,
-      favoriteSkiMask: null,
-      education: null,
-      profession: null,
-      perfectSkiDay: null,
       newMail1: null,
       newMail2: null,
       birthday: null,
@@ -486,11 +481,6 @@ export default {
       this.city = user.getCity()
       this.country = user.getCountry()
       this.phone = user.getPhone()
-      this.perfectSkiDay = user.getSkiDay()
-      this.favoriteSkiRessort = user.getSkiDestination()
-      this.favoriteSkiMask = user.getSkiMask()
-      this.education = user.getEducation()
-      this.profession = user.getProfession()
       this.salutations = user.salutations
     },
 
