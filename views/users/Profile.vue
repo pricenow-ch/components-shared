@@ -509,8 +509,8 @@ export default {
               title: this.salutations.salutation.salutationKey,
             }
           )
-          .then(() => {
-            this.$store.dispatch('getMainUserFromAPI')
+          .then(async () => {
+            await this.$store.dispatch('getMainUserFromAPI')
             EventBus.$emit(
               'notify',
               this.$root.$t('notify.profileInfoSaved'),
