@@ -134,8 +134,7 @@
                     outlined
                     :label="$t('registration.email')"
                     @keydown="$refs.mailModal.show()"
-                  >
-                  </v-text-field>
+                  />
                 </v-col>
               </v-row>
 
@@ -285,9 +284,9 @@
             <v-text-field
               v-model="newMail1"
               :rules="$store.getters.getMailRules()"
+              outlined
               :label="$t('profile.newMailFirst')"
-            >
-            </v-text-field>
+            />
           </v-col>
 
           <!-- email 2 -->
@@ -296,8 +295,8 @@
               v-model="newMail2"
               :rules="$store.getters.getMailRules()"
               :label="$t('profile.newMailRepeat')"
-            >
-            </v-text-field>
+              outlined
+            />
           </v-col>
         </v-row>
       </v-form>
@@ -545,12 +544,19 @@ export default {
           this.$store.dispatch('getMainUserFromAPI')
           this.$refs.mailModal.hide()
         })
-        .catch(() => {
-          EventBus.$emit(
-            'notify',
-            this.$root.$t('notify.mailNotSaved'),
-            'error'
-          )
+        .catch((error) => {
+          if (error.response.status === 400) {
+            EventBus.$emit(
+              'notify',
+              this.$root.$t('registrationForm.userAlreadyExists')
+            )
+          } else {
+            EventBus.$emit(
+              'notify',
+              this.$root.$t('notify.mailNotSaved'),
+              'error'
+            )
+          }
         })
         .finally(() => {
           EventBus.$emit('spinnerHide')
