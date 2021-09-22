@@ -582,7 +582,6 @@ export default {
     },
 
     async updateMail() {
-      console.log('update mail')
       /* global EventBus axios */
       EventBus.$emit('spinnerShow')
 
