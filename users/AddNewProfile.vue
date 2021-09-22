@@ -582,6 +582,7 @@ export default {
     },
 
     async updateMail() {
+      console.log('update mail')
       /* global EventBus axios */
       EventBus.$emit('spinnerShow')
 
@@ -600,7 +601,14 @@ export default {
 
         this.afterUserUpdate()
       } catch (e) {
-        EventBus.$emit('notify')
+        if (e.response.status === 400) {
+          EventBus.$emit(
+            'notify',
+            this.$root.$t('registrationForm.userAlreadyExists')
+          )
+        } else {
+          EventBus.$emit('notify')
+        }
       } finally {
         EventBus.$emit('spinnerHide')
       }
@@ -693,13 +701,14 @@ export default {
             if (error.response.status === 409) {
               let user = new User(error.response.data)
               let userString = user.getFullName()
-              if (user.getBirthdate()) userString + ', ' + user.getBirthdate()
-              if (user.getCity())
-                userString +
-                  ' ' +
-                  this.$root.$t('shopBackendBookingDetail.fromCity') +
-                  ' ' +
-                  user.getCity()
+              if (user.getBirthdate()) {
+                userString = `${userString}, ${user.getBirthdate()}`
+              }
+              if (user.getCity()) {
+                userString = `${userString} ${this.$root.$t(
+                  'shopBackendBookingDetail.fromCity'
+                )} ${user.getCity()}`
+              }
               EventBus.$emit(
                 'notify',
                 this.$root.$t('addNewProfile.mailAlreadyExists', {
