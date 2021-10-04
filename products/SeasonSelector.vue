@@ -10,6 +10,7 @@
         :loading="seasons.length === 0"
         max-width="100%"
         v-on="on"
+        :disabled="disabled"
       >
         <!-- prefix icon -->
         <span v-if="prefixIcon" :class="prefixIcon" class="mr-2" />
@@ -76,6 +77,12 @@ export default {
       required: false,
       default: null,
     },
+
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
+    }
   },
 
   methods: {

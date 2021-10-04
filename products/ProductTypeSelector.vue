@@ -4,6 +4,7 @@
       <season-selector
         v-if="availableSeasons && availableSeasons.length"
         outlined
+        :disabled="!showSeasonSelector"
         prefix-icon='fal fa-calendar'
         :seasons='availableSeasons'
         :selected-season-instance='selectedSeasonForSeasonSelector'
@@ -39,6 +40,11 @@ export default {
       required: false,
       default: null,
     },
+    showSeasonSelector: {
+      type: Boolean,
+      required: false,
+      default: true,
+    }
   },
 
   data() {
