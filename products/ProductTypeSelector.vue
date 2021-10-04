@@ -2,9 +2,8 @@
   <v-row dense justify='start'>
     <v-col class='col-auto'>
       <season-selector
-        v-if="availableSeasons && availableSeasons.length"
+        v-if="showSeasonSelector && availableSeasons && availableSeasons.length"
         outlined
-        :disabled="!showSeasonSelector"
         prefix-icon='fal fa-calendar'
         :seasons='availableSeasons'
         :selected-season-instance='selectedSeasonForSeasonSelector'
