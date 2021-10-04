@@ -9,8 +9,8 @@
         color="primary"
         :loading="seasons.length === 0"
         max-width="100%"
-        v-on="on"
         :disabled="disabled"
+        v-on="on"
       >
         <!-- prefix icon -->
         <span v-if="prefixIcon" :class="prefixIcon" class="mr-2" />
@@ -82,7 +82,7 @@ export default {
       type: Boolean,
       required: false,
       default: false,
-    }
+    },
   },
 
   methods: {

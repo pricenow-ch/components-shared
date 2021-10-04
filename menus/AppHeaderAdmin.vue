@@ -164,7 +164,7 @@ export default {
     },
     showSeasonSelector() {
       return this.routesForSeasonSelection.includes(this.$route.name)
-    }
+    },
   },
 
   asyncComputed: {
