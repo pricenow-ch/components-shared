@@ -100,7 +100,11 @@ export default {
     this.$store.commit('setSelectedSeason', seasonsInstance.getFirstSeason())
     // fetch all products for each destination from api
     let productsInstance = new Products()
-    await productsInstance.loadProductsForAllDestinations(destinations, true)
+    await productsInstance.loadProductsForAllDestinations(
+      destinations,
+      true,
+      true
+    )
 
     // todo: can this be done within the Products class?
     const uniqueProducts = _.uniqBy(productsInstance.getProducts(true), 'id')
