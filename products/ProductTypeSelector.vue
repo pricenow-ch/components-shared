@@ -44,6 +44,11 @@ export default {
       required: false,
       default: true,
     },
+    loadExtendedProducts: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 
   data() {
@@ -103,7 +108,7 @@ export default {
     await productsInstance.loadProductsForAllDestinations(
       destinations,
       true,
-      true
+      this.loadExtendedProducts
     )
 
     // todo: can this be done within the Products class?
