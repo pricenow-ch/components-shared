@@ -369,11 +369,6 @@ export default {
     return {
       showPw: false,
       passwordTouched: false,
-      favoriteSkiRessort: null,
-      favoriteSkiMask: null,
-      education: null,
-      profession: null,
-      perfectSkiDay: null,
       newMail1: null,
       newMail2: null,
       birthday: null,
@@ -485,11 +480,6 @@ export default {
       this.city = user.getCity()
       this.country = user.getCountry()
       this.phone = user.getPhone()
-      this.perfectSkiDay = user.getSkiDay()
-      this.favoriteSkiRessort = user.getSkiDestination()
-      this.favoriteSkiMask = user.getSkiMask()
-      this.education = user.getEducation()
-      this.profession = user.getProfession()
       this.salutations = user.salutations
     },
 
@@ -515,18 +505,11 @@ export default {
               country: this.country === '' ? null : this.country,
               phone: this.phone === '' ? null : this.phone,
               language: this.$store.getters.getActualLanguage(false),
-              skiDay: this.perfectSkiDay === '' ? null : this.perfectSkiDay,
-              skiDestination:
-                this.favoriteSkiRessort === '' ? null : this.favoriteSkiRessort,
-              skiMask:
-                this.favoriteSkiMask === '' ? null : this.favoriteSkiMask,
-              education: this.education === '' ? null : this.education,
-              profession: this.profession === '' ? null : this.profession,
               title: this.salutations.salutation.salutationKey,
             }
           )
-          .then(() => {
-            this.$store.dispatch('getMainUserFromAPI')
+          .then(async () => {
+            await this.$store.dispatch('getMainUserFromAPI')
             EventBus.$emit(
               'notify',
               this.$root.$t('notify.profileInfoSaved'),

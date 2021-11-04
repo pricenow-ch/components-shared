@@ -9,6 +9,7 @@
         color="primary"
         :loading="seasons.length === 0"
         max-width="100%"
+        :disabled="disabled"
         v-on="on"
       >
         <!-- prefix icon -->
@@ -75,6 +76,12 @@ export default {
       type: String,
       required: false,
       default: null,
+    },
+
+    disabled: {
+      type: Boolean,
+      required: false,
+      default: false,
     },
   },
 

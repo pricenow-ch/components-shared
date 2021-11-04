@@ -2,7 +2,7 @@
   <v-row dense justify='start'>
     <v-col class='col-auto'>
       <season-selector
-        v-if="availableSeasons && availableSeasons.length"
+        v-if="showSeasonSelector && availableSeasons && availableSeasons.length"
         outlined
         prefix-icon='fal fa-calendar'
         :seasons='availableSeasons'
@@ -38,6 +38,11 @@ export default {
       type: Number,
       required: false,
       default: null,
+    },
+    showSeasonSelector: {
+      type: Boolean,
+      required: false,
+      default: true,
     },
   },
 

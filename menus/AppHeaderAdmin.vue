@@ -19,7 +19,9 @@
         class="col-4 text-center"
       >
         <div>
-          <product-type-selector />
+          <product-type-selector 
+          :show-season-selector="showSeasonSelector"
+          />
         </div>
       </v-col>
 
@@ -134,6 +136,7 @@ export default {
       selectedMenuEntry: Object,
       // all routes where the product type selector has to be displayed
       routes: ['overviewPricing', 'pricingDetails'],
+      routesForSeasonSelection: ['overviewPricing'],
     }
   },
 
@@ -158,6 +161,9 @@ export default {
     },
     showProductTypeSelector() {
       return this.routes.includes(this.$route.name)
+    },
+    showSeasonSelector() {
+      return this.routesForSeasonSelection.includes(this.$route.name)
     },
   },
 
