@@ -19,8 +19,9 @@
         class="col-4 text-center"
       >
         <div>
-          <product-type-selector 
+          <product-type-selector
           :show-season-selector="showSeasonSelector"
+          :load-extended-products="loadExtendedProducts"
           />
         </div>
       </v-col>
@@ -126,6 +127,14 @@ export default {
 
   components: {
     ProductTypeSelector,
+  },
+
+  props: {
+    loadExtendedProducts: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
   },
 
   data() {
