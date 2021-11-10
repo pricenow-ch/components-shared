@@ -1,22 +1,22 @@
 <template>
-  <v-row dense justify='start'>
-    <v-col class='col-auto'>
+  <v-row dense justify="start">
+    <v-col class="col-auto">
       <season-selector
         v-if="showSeasonSelector && availableSeasons && availableSeasons.length"
         outlined
-        prefix-icon='fal fa-calendar'
-        :seasons='availableSeasons'
-        :selected-season-instance='selectedSeasonForSeasonSelector'
-        @update:selectedSeasonInstance='onSeasonSelected'
+        prefix-icon="fal fa-calendar"
+        :seasons="availableSeasons"
+        :selected-season-instance="selectedSeasonForSeasonSelector"
+        @update:selectedSeasonInstance="onSeasonSelected"
       />
     </v-col>
-    <v-col class='col-auto'>
+    <v-col class="col-auto">
       <product-selector
         outlined
-        prefix-icon='fal fa-hand-pointer'
-        :products-and-events='productsForProductSelector'
-        :selected-product-or-event-instance='selectedProductForProductSelector'
-        @update:selectedProductOrEventInstance='onProductTypeSelected'
+        prefix-icon="fal fa-hand-pointer"
+        :products-and-events="productsForProductSelector"
+        :selected-product-or-event-instance="selectedProductForProductSelector"
+        @update:selectedProductOrEventInstance="onProductTypeSelected"
       />
     </v-col>
   </v-row>
