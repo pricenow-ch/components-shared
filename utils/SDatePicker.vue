@@ -1,5 +1,5 @@
 <template>
-  <div @click="setFirstClickStartDate()">
+  <div>
     <v-menu
       ref="datePicker"
       v-model="menu"
@@ -115,6 +115,10 @@ export default {
       menu: false,
       isFirstClick: true,
     }
+  },
+
+  mounted() {
+    this.setFirstClickStartDate()
   },
 
   methods: {
