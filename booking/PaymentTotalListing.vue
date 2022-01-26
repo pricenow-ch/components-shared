@@ -74,6 +74,16 @@
           {{ booking.getDestination().getTaxNr() }}
         </v-col>
       </v-row>
+
+      <!-- address -->
+      <v-row v-if="showAddress">
+        <v-col class="col-6 py-1">
+          {{ $t('general.address') }}
+        </v-col>
+        <v-col class="col-6 py-1">
+          {{ booking.getDestination().getAddress() }}
+        </v-col>
+      </v-row>
     </v-col>
 
     <!-- total -->
@@ -147,6 +157,11 @@ export default {
       required: true,
     },
     showTaxNr: {
+      type: Boolean,
+      required: false,
+      default: false,
+    },
+    showAddress: {
       type: Boolean,
       required: false,
       default: false,
