@@ -29,6 +29,7 @@ import Seasons from '@/classes-shared/season/Seasons'
 import _ from 'lodash'
 import ProductSelector from './ProductSelector'
 import SeasonSelector from './SeasonSelector'
+import moment from 'moment'
 
 export default {
   name: 'ProductTypeSelector',
@@ -100,9 +101,18 @@ export default {
     //fetch all seasons for available destinations
     const seasonsInstance = new Seasons()
     await seasonsInstance.loadSeasonsForAllDestinations(destinations)
-    this.availableSeasons = seasonsInstance.getAllSeasons()
-    //default current selected season to the first one
-    this.$store.commit('setSelectedSeason', seasonsInstance.getFirstSeason())
+    this.availableSeasons = seasonsInstance
+      .getAllSeasons()
+      .sort((lhs, rhs) => lhs.from.getTime() - rhs.from.getTime())
+    //default current selected season to the current one
+    const currentSeason = this.availableSeasons.find((season) =>
+      moment().isBetween(moment(season.from), moment(season.to))
+    )
+    const firstSeason = seasonsInstance.getFirstSeason()
+    this.$store.commit(
+      'setSelectedSeason',
+      currentSeason ? currentSeason : firstSeason
+    )
     // fetch all products for each destination from api
     let productsInstance = new Products()
     await productsInstance.loadProductsForAllDestinations(
