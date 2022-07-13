@@ -69,7 +69,8 @@ export default {
     // products for the product-selector
     productsForProductSelector() {
       if (this.availableProducts) {
-        let tmpProducts = this.availableProducts.map((products) => products[0])
+        console.log(this.availableProducts)
+        let tmpProducts = this.availableProducts.flatMap((products) => products)
         return tmpProducts.sort((a, b) => a.getSortOrder() - b.getSortOrder())
       }
       return []
