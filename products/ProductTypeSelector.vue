@@ -69,8 +69,8 @@ export default {
     // products for the product-selector
     productsForProductSelector() {
       if (this.availableProducts) {
-        let tmpProducts = this.availableProducts.flatMap((products) => products)
-        return tmpProducts.sort((a, b) => a.getSortOrder() - b.getSortOrder())
+        const flatProducts = this.availableProducts.flat()
+        return flatProducts.sort((a, b) => a.getSortOrder() - b.getSortOrder())
       }
       return []
     },
@@ -137,17 +137,14 @@ export default {
   methods: {
     onProductTypeSelected(productInstance) {
       // get product type group
-      let products = this.availableProducts.find(
-        (productTypeGroup) =>
-          productTypeGroup[0].getId() === productInstance.getId()
-      )
+      const product = this.availableProducts
+        .flat()
+        .find((product) => product.getId() === productInstance.getId())
 
       // reset products
       this.$store.commit('setProducts')
       // transform products into products instance
-      products.map((productInstance) =>
-        this.chosenProducts.addProduct(productInstance)
-      )
+      this.chosenProducts.addProduct(product)
     },
 
     onSeasonSelected(seasonInstance) {
