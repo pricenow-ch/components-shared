@@ -217,7 +217,7 @@ export default {
     // helper method to display the products or events name in the dropdown
     displayProductEvent(item) {
       if (item instanceof Event) return item.title
-      return this.$t(item.getTranslation())
+      return this.$t(item.getTranslation()) + ' ' + item.destinations[0].name
     },
 
     subheader(index) {

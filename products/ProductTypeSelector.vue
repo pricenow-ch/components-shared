@@ -113,11 +113,7 @@ export default {
 
     // todo: can this be done within the Products class?
     const uniqueProducts = _.uniqBy(productsInstance.getProducts(true), 'id')
-    let groupedProducts = uniqueProducts.reduce((r, a) => {
-      r[a.type] = r[a.type] || []
-      r[a.type].push(a)
-      return r
-    }, Object.create(null))
+    const groupedProducts = _.groupBy(uniqueProducts, 'type')
 
     // sort product type by product id
     this.availableProducts = _.sortBy(groupedProducts, (products) => {
